@@ -138,8 +138,7 @@ contract Exchange is Ownable {
     lastActiveTransaction[tradeAddresses[2]] = block.number;
     lastActiveTransaction[tradeAddresses[3]] = block.number;
 
-    //triger event forgotten by IDEX
-    //Trade(address tokenBuy, uint256 amountBuy, address tokenSell, uint256 amountSell, address get, address give);  
+    //Trade(address tokenBuy, uint256 amountBuy, address tokenSell, uint256 amountSell, address get, address give);
 
     return true;
   }
