@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dapp</title>
+
+    <!-- Libraries -->
+    <link rel="stylesheet" href="lib/bootstrap-4.0.0-beta.2.min.css">
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <script src="lib/popper-1.12.3.min.js"></script>
+    <script src="lib/bootstrap-4.0.0-beta.2.min.js"></script>
+    <script src="lib/truffle-contract-3.0.4.min.js"></script>
+    <script src="lib/web3-1.0.min.js"></script>
+    <!-- Load DApp -->
+    <script src="bundle.js"></script>
+    
+</head>
+<body>
+    <div id="dapp" class="container">
+
+        <!-- Ether section starts. -->
+        <div class="container border border-primary pb-2 mt-5">
+            <h1 class="text-center">Ether</h1>
+
+            <!-- Amount of ether. -->
+            <div class="row">
+                <div class="col-4"><b>ETH amount:</b></div>
+                <div class="col-8"><p id="eth-amount">Not loaded</p></div>
+            </div>
+
+            <!-- Amount of eth on Exchange. -->
+            <div class="row">
+                <div class="col-4"><b>ETH deposit on Exchange:</b></div>
+                <div class="col-8"><p id="eth-amount-on-exchange">Not loaded</p></div>
+            </div>
+
+            <!-- Amount of eth on fee account. -->
+            <div class="row">
+                <div class="col-4"><b>ETH balance on Fee Account:</b></div>
+                <div class="col-8"><p id="eth-amount-on-fee-account">Not loaded</p></div>
+            </div>
+
+            <!-- Deposit ETH form -->
+            <div class="row pb-1">
+                <div class="col-4"><b>Deposit ETH:</b></div>
+                <div class="col-6">
+                    <input id="deposit-eth-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="ETH amount"
+                           value=0.111>
+               </div>
+               <div class="col-2">
+                    <button class="btn btn-success" 
+                            onClick="DApp.depositEth()">Deposit</button>
+                </div>
+            </div>
+        
+            <!-- Withdraw ETH form -->
+            <div class="row pb-1">
+                <div class="col-4"><b>Withdraw ETH:</b></div>
+                <div class="col-6">
+                    <input id="withdraw-eth-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="ETH amount"
+                           value=0.01>
+               </div>
+               <div class="col-2">
+                    <button class="btn btn-warning" 
+                            onClick="DApp.withdrawEth()">Withdraw</button>
+                </div>
+            </div>
+
+            <!-- Admin Withdraw ETH form -->
+            <div class="row">
+                <div class="col-4"><b>Admin Withdraw ETH:</b></div>
+                <div class="col-6">
+                    <input id="withdraw-admin-eth-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="ETH amount"
+                           value=0.01>
+               </div>
+               <div class="col-2">
+                    <button class="btn btn-danger" 
+                            onClick="DApp.adminWithdrawEth()">Admin Withdraw</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- Ether section ends. -->
+
+        <!-- Mock Token section starts. -->
+        <div class="container border border-warning pb-2 mt-5">
+            <h1 class="text-center">Mock Token</h1>
+
+            <!-- Amount of mock tokens. -->
+            <div class="row">
+                <div class="col-4"><b>MockTokens amount:</b></div>
+                <div class="col-8"><p id="token-mock-amount">Not loaded</p></div>
+            </div> 
+
+            <!-- Amount of mock tokens allowance. -->
+            <div class="row">
+                <div class="col-4"><b>MockTokens allowance for Exchange:</b></div>
+                <div class="col-8"><p id="token-mock-allowance">Not loaded</p></div>
+            </div> 
+
+            <!-- Amount of MockTokens on Exchange. -->
+            <div class="row">
+                <div class="col-4"><b>MockTokens deposit on Exchange:</b></div>
+                <div class="col-8"><p id="mock-token-amount-on-exchange">Not loaded</p></div>
+            </div>
+
+            <!-- Amount of MockTokens on Fee Account. -->
+            <div class="row">
+                <div class="col-4"><b>MockTokens balance on Fee Account:</b></div>
+                <div class="col-8"><p id="mock-token-amount-on-fee-account">Not loaded</p></div>
+            </div>
+
+            <!-- Mock Token allowance setter -->
+            <div class="row pb-1">
+                <div class="col-4"><b>Set MockToken Allowance for Exchange:</b></div>
+                <div class="col-6">
+                    <input id="allow-mock-token-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="MockToken amount"
+                           value=12>
+               </div>
+               <div class="col-2">
+                    <button class="btn btn-info" 
+                            onClick="DApp.mockTokenAllow()">Allow</button>
+                </div>
+            </div>
+
+            <!-- Deposit MockToken form -->
+            <div class="row pb-1">
+                <div class="col-4"><b>Deposit MockToken:</b></div>
+                <div class="col-6">
+                    <input id="deposit-mock-token-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="MockToken amount"
+                           value=3>
+               </div>
+               <div class="col-2">
+                    <button class="btn btn-success" 
+                            onClick="DApp.depositMockToken()">Deposit</button>
+                </div>
+            </div>
+
+            <!-- Withdraw MockToken form -->
+            <div class="row pb-1">
+                <div class="col-4"><b>Withdraw MockToken:</b></div>
+                <div class="col-6">
+                    <input id="withdraw-mock-token-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="MockToken amount"
+                           value=12>
+               </div>
+               <div class="col-2">
+                    <button class="btn btn-warning" 
+                            onClick="DApp.withdrawMockToken()">Withdraw</button>
+                </div>
+            </div>
+
+            <!-- Admin Withdraw MockToken form -->
+            <div class="row">
+                <div class="col-4"><b>Admin Withdraw MockToken:</b></div>
+                <div class="col-6">
+                    <input id="withdraw-admin-mock-token-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="MockToken amount"
+                           value=12>
+               </div>
+               <div class="col-2">
+                    <button class="btn btn-danger" 
+                            onClick="DApp.adminWithdrawMockToken()">Admin Withdraw</button>
+                </div>
+            </div>
+
+            <!-- Mock Token section ends. -->
+         </div>
+
+        <!-- Create order section starts. -->
+        <div class="container border border-info pb-2 mt-5">
+            <h1 class="text-center">Create Order</h1>
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Exchange Address:</b></div>
+                <div class="col-8"><p id="order-exchange-address">Not loaded</p></div>
+            </div> 
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Base Token Address (ETH):</b></div>
+                <div class="col-6">
+                    <input id="order-base-token" 
+                           type="text" 
+                           class="form-control" 
+                           placeholder="Base Token Address"
+                           value="0x0000000000000000000000000000000000000000">
+               </div>
+            </div> 
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Base Token Amount:</b></div>
+                <div class="col-6">
+                    <input id="order-base-token-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="Base Token Amount"
+                           value=1>
+               </div>
+            </div> 
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Quote Token Address (Mock Token):</b></div>
+                <div class="col-6">
+                  <input id="order-quote-token" 
+                           type="text" 
+                           class="form-control" 
+                           placeholder="Quote Token Address"
+                           value="0x...">
+               </div>
+            </div> 
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Quote Token Amount:</b></div>
+                <div class="col-6">
+                    <input id="order-quote-token-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="Quote Token Amount"
+                           value=100>
+                </div>
+            </div> 
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Market Maker Address (yours):</b></div>
+                <div class="col-8"><p id="order-maker-address">Not loaded</p></div>
+            </div> 
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Order Nonce:</b></div>
+                <div class="col-8"><p id="order-nonce">Not loaded</p></div>
+            </div>
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Signed Order:</b></div>
+                <div class="col-8"><p id="order-signed">Not loaded</p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"></div>
+               <div class="col-6">
+                    <button class="btn btn-info" 
+                            onClick="DApp.createOrder()">Create And Sign The Order</button>
+                </div>
+            </div>
+            <!-- Create order section ends. -->
+         </div>
+
+        <!-- Trade section starts. -->
+        <div class="container border border-warning pb-2 mt-5">
+            <h1 class="text-center">Sign Trade</h1>
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Signed Order:</b></div>
+                <div class="col-8"><p id="trade-order-signed">Not loaded</p></div>
+            </div> 
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Base Token Amount (TKM) To Fill:</b></div>
+                <div class="col-6">
+                    <input id="trade-base-token-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="Base Token Amount To Fill"
+                           value=1>
+               </div>
+            </div> 
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Quote Token Amount (ETH) To Fill:</b></div>
+                <div class="col-6">
+                    <input id="trade-quote-token-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="Quote Token Amount To Fill"
+                           value=1>
+               </div>
+            </div> 
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Market Taker Address (yours):</b></div>
+                <div class="col-8"><p id="trade-taker-address">Not loaded</p></div>
+            </div> 
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Trade Nonce:</b></div>
+                <div class="col-8"><p id="trade-nonce">Not loaded</p></div>
+            </div>
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Signed Trade:</b></div>
+                <div class="col-8"><p id="trade-signed">Not loaded</p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"></div>
+               <div class="col-6">
+                    <button class="btn btn-warning" 
+                            onClick="DApp.fillTrade()">Sign And Fill The Trade</button>
+                </div>
+            </div>
+            <!-- Trade section ends. -->
+         </div>
+
+        <!-- Execute trade section starts. -->
+        <div class="container border border-danger pb-2 mt-5">
+            <h1 class="text-center">Execute Trade</h1>
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Signed Order:</b></div>
+                <div class="col-8"><p id="execute-order-signed">Not loaded</p></div>
+            </div> 
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Signed Trade:</b></div>
+                <div class="col-8"><p id="execute-trade-signed">Not loaded</p></div>
+            </div>
+
+            <div class="row pb-1">
+                <div class="col-4"><b>Admin Address:</b></div>
+                <div class="col-8"><p id="execute-admin-address">Not loaded</p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-6">
+                    <button class="btn btn-danger" 
+                            onClick="DApp.executeTrade()">Execute Trade As Admin</button>
+                </div>
+            </div>
+            <!-- Execute section ends. -->
+         </div>
+
+        <div class="container border border-warning pb-2 mt-5">
+            <h1 class="text-center">OptionToken</h1>
+
+            <!-- Owner of OptionFactory. -->
+            <div class="row pb-1">
+                <div class="col-4"><b>OptionFactory Owner (fee reciever):</b></div>
+                <div class="col-8"><p id="option-factory-owner"></p></div>
+            </div>
+
+            <!-- Name of current OptionToken. -->
+            <div class="row pb-1">
+                <div class="col-4"><b>OptionToken Name:</b></div>
+                <div class="col-8"><p id="option-token-name"></p></div>
+            </div>
+            
+            <!-- Current OptionToken address. -->
+            <div class="row pb-1">
+                <div class="col-4"><b>OptionToken Address:</b></div>
+                <div class="col-8"><p id="option-token-address"></p></div>
+            </div>
+            
+            <!-- Create new OptionToken button. -->
+            <div class="row pb-1">
+                <div class="col-4"><b>Create OptionToken:</b></div>
+                <div class="col-8">
+                    <button class="btn btn-danger" 
+                            onClick="DApp.createOptionToken()">Create</button>
+                </div> 
+            </div>
+
+            <!-- Amount of OptionTokens for current account. -->
+            <div class="row pb-1">
+                <div class="col-4"><b>OptionToken Balance:</b></div>
+                <div class="col-8"><p id="option-token-balance"></p></div>
+            </div>
+            
+            <!-- Amount of eth in OptionToken contact. -->
+            <div class="row">
+                <div class="col-4"><b>ETH locked in OptionToken:</b></div>
+                <div class="col-8"><p id="eth-in-option-token-contract">Not loaded</p></div>
+            </div>
+
+            <!-- Issue options form. -->
+            <div class="row pb-1">
+                <div class="col-4"><b>Issue new Option Tokens using ETH:</b></div>
+                <div class="col-6">
+                    <input id="issue-new-options-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="Eth amount"
+                           value=10>
+               </div>
+               <div class="col-2">
+                    <button class="btn btn-info" 
+                            onClick="DApp.issueOptions()">Issue</button>
+                </div>
+            </div>
+
+            <!-- Cancel issued options form. -->
+            <div class="row pb-1">
+                <div class="col-4"><b>Cancel Option Tokens:</b></div>
+                <div class="col-6">
+                    <input id="cancel-options-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="Options amount"
+                           value=10>
+               </div>
+               <div class="col-2">
+                    <button class="btn btn-danger" 
+                            onClick="DApp.cancelOptions()">Cancel</button>
+                </div>
+            </div>
+
+            <!-- Current MockToken allowance for OptionToken contact. -->
+            <div class="row">
+                <div class="col-4"><b>MockToken allowance for OptionToken</b></div>
+                <div class="col-8"><p id="mock-token-allowance-for-option-token-contract">Not loaded</p></div>
+            </div>
+
+            <!-- Set MockToken allowance for OptionToken contact form. -->
+            <div class="row pb-1">
+                <div class="col-4"><b>Set MockToken allowance for OptionToken</b></div>
+                <div class="col-6">
+                    <input id="new-mock-token-allowance-for-option-token-contract" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="Options amount"
+                           value=10>
+               </div>
+               <div class="col-2">
+                    <button class="btn btn-danger" 
+                            onClick="DApp.setMockTokenAllowanceForOptionToken()">Set</button>
+                </div>
+            </div>
+
+            <!-- Execute option form -->
+            <div class="row pb-1">
+                <div class="col-4"><b>Execute using Mock Tokens:</b></div>
+                <div class="col-6">
+                    <input id="execute-options-amount" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="Options amount"
+                           value=2>
+               </div>
+               <div class="col-2">
+                    <button class="btn btn-success" 
+                            onClick="DApp.executeOptions()">Execute</button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</body>
+</html>
